@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "baseUrl": "src",
+        "noImplicitAny": true,
+        "target": "es2015"
+    },
+    "exclude": [
+        "src/**/*.type.ts"
+    ],
+    "include": [
+        "src/**/*.ts"
+    ]
+}
