@@ -543,8 +543,6 @@ var StandardRen2Context = function () {
         key: "draw",
         value: function draw(model) {
             var buffer = this.modelRepository.saveToBuffer(model);
-            // this.clearCanvas();
-            for (var i = 0; i < 100000; i++) {}
             this.renderer.draw(buffer);
         }
     }]);
@@ -666,7 +664,9 @@ var StandardRen2Model = function () {
                 var vertex1 = triangle.getVertex1(),
                     vertex2 = triangle.getVertex2(),
                     vertex3 = triangle.getVertex3();
-                positions.push(vertex1.getPositionX(), vertex1.getPositionY(), _this.layer, vertex2.getPositionX(), vertex2.getPositionY(), _this.layer, vertex3.getPositionX(), vertex3.getPositionY(), _this.layer);
+                positions.push(vertex1.getPositionX(), vertex1.getPositionY(),
+                // TODO This will need to be divided by the number of layers.
+                -_this.layer, vertex2.getPositionX(), vertex2.getPositionY(), -_this.layer, vertex3.getPositionX(), vertex3.getPositionY(), -_this.layer);
             });
             return Float32Array.from(positions);
         }

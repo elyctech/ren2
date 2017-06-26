@@ -1,7 +1,7 @@
 {
   "name": "ren2",
-  "version": "0.1.0",
-  "description": "A 2-dimentional rendering engine for the Web built on WebGL",
+  "version": "0.1.2",
+  "description": "A 2-dimensional rendering engine for the Web built on WebGL",
   "main": "index.js",
   "repository": "https://github.com/elyctech/ren2",
   "author": "Cyle Ven Dawson <dawsonc623@gmail.com>",

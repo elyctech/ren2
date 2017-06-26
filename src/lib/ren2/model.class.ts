@@ -77,13 +77,14 @@ class StandardRen2Model implements Ren2Model
       positions.push(
         vertex1.getPositionX(),
         vertex1.getPositionY(),
-        this.layer,
+        // TODO This will need to be divided by the number of layers.
+        -this.layer,
         vertex2.getPositionX(),
         vertex2.getPositionY(),
-        this.layer,
+        -this.layer,
         vertex3.getPositionX(),
         vertex3.getPositionY(),
-        this.layer
+        -this.layer
       )
     });
 
