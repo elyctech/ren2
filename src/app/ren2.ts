@@ -9,14 +9,16 @@ import triangleFactory            from "app/ren2/triangle/factory";
 import uint16CollectionFactory    from "app/ren2/uint16_collection/factory";
 import vertexFactory              from "app/ren2/vertex/factory";
 
-(<any>window).ren2  = ren2ServiceFactory.construct(
-                        canvasContextMapFactory.construct(),
-                        contextFactory,
-                        modelCollectionFactory,
-                        modelFactory,
-                        stageFactory,
-                        triangleCollectionFactory,
-                        triangleFactory,
-                        uint16CollectionFactory,
-                        vertexFactory
-                      );
+const ren2Service = ren2ServiceFactory.construct(
+        canvasContextMapFactory.construct(),
+        contextFactory,
+        modelCollectionFactory,
+        modelFactory,
+        stageFactory,
+        triangleCollectionFactory,
+        triangleFactory,
+        uint16CollectionFactory,
+        vertexFactory
+      );
+
+export default ren2Service;

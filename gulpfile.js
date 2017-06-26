@@ -6,7 +6,7 @@ const babel       = require("gulp-babel"),
 
 const tsProject   = ts.createProject("tsconfig.json");
 
-gulp.task("compile", function()
+gulp.task("default", function()
 {
   return tsProject.src()
           .pipe(tsProject()).js
@@ -18,16 +18,16 @@ gulp.task("compile", function()
           .pipe(gulp.dest("dist"));
 });
 
-gulp.task("default", [
-  "compile"
+gulp.task("www", [
+  "default"
 ], function()
 {
-  return browserify("./dist/app/ren2.js", {
+  return browserify("./dist/app/www.js", {
             "paths": [
               "dist"
             ]
           })
           .bundle()
-          .pipe(source("index.js"))
+          .pipe(source("www.js"))
           .pipe(gulp.dest("."));
 });
