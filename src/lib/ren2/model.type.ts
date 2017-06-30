@@ -12,6 +12,8 @@ interface Ren2Model
 
   getIndices(): Ren2Uint16Collection;
 
+  getLayer(): number;
+
   getLocationX(): number;
 
   getLocationY(): number;

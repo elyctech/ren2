@@ -21,6 +21,9 @@ class StandardRen2ModelRepository implements Ren2ModelRepository
   {
     let buffer;
 
+    // TODO This should be divided up into a create and save method. The create would initialize a buffer with all of
+    //      the necessary data while this would simply save the data to an existing buffer.
+
     if (this.modelBufferMap.contains(model))
     {
       buffer = this.modelBufferMap.get(model);
@@ -33,8 +36,10 @@ class StandardRen2ModelRepository implements Ren2ModelRepository
       buffer = this.bufferFactory.construct(
         this.webglRenderingContext.createBuffer(),
         0,
+        1,
         Float32Array.from([0, 0]),
         this.webglRenderingContext.createBuffer(),
+        // TODO Do not create redundant textures. A texture repository would help with this
         this.webglRenderingContext.createTexture(),
         this.webglRenderingContext.createBuffer(),
         this.webglRenderingContext
@@ -49,6 +54,11 @@ class StandardRen2ModelRepository implements Ren2ModelRepository
       model.getIndices().asArray()
     );
 
+    buffer.setLayer(
+      // WebGL has negative values closer than positive values
+      -model.getLayer()
+    );
+
     buffer.setLocation(
       model.getLocationX(),
       model.getLocationY()
@@ -58,6 +68,7 @@ class StandardRen2ModelRepository implements Ren2ModelRepository
       model.getPositions()
     );
 
+    // TODO To avoid redundant textures, this API will need to change
     buffer.setTextureImage(
       model.getTextureImage()
     );

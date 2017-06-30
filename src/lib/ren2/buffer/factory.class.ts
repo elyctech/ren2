@@ -7,6 +7,7 @@ class StandardRen2BufferFactory implements Ren2BufferFactory
   construct(
     indexBuffer             : WebGLBuffer,
     indexCount              : number,
+    layer                   : number,
     location                : Float32Array,
     positionBuffer          : WebGLBuffer,
     texture                 : WebGLTexture,
@@ -17,6 +18,7 @@ class StandardRen2BufferFactory implements Ren2BufferFactory
     return new StandardRen2Buffer(
       indexBuffer,
       indexCount,
+      layer,
       location,
       positionBuffer,
       texture,

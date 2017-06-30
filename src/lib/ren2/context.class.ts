@@ -18,7 +18,7 @@ class StandardRen2Context implements Ren2Context
     this.webglRenderingContext.clear(
       this.webglRenderingContext.COLOR_BUFFER_BIT |
       this.webglRenderingContext.DEPTH_BUFFER_BIT
-    )
+    );
   }
 
   draw(

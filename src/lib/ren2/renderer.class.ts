@@ -3,6 +3,8 @@ import Ren2Renderer from "lib/ren2/renderer.type";
 
 class StandardRen2Renderer implements Ren2Renderer
 {
+  private layerUniformLocation : WebGLUniformLocation;
+
   private locationUniformLocation : WebGLUniformLocation;
 
   private positionAttributeLocation : number;
@@ -40,6 +42,11 @@ class StandardRen2Renderer implements Ren2Renderer
 
     this.webglRenderingContext.useProgram(
       this.webglProgram
+    );
+
+    this.layerUniformLocation = this.webglRenderingContext.getUniformLocation(
+      this.webglProgram,
+      "uLayer"
     );
 
     this.locationUniformLocation = this.webglRenderingContext.getUniformLocation(
@@ -83,11 +90,18 @@ class StandardRen2Renderer implements Ren2Renderer
       this.webglProgram
     );
 
+    // Model z-placement
+
+    this.webglRenderingContext.uniform1i(
+      this.layerUniformLocation,
+      buffer.getLayer()
+    );
+
     // Model placement on the viewport
 
     this.webglRenderingContext.uniform2fv(
       this.locationUniformLocation,
-      // Should be of length two
+      // TODO Should be of length two
       buffer.getLocation()
     );
 
@@ -100,7 +114,7 @@ class StandardRen2Renderer implements Ren2Renderer
 
     this.webglRenderingContext.vertexAttribPointer(
       this.positionAttributeLocation,
-      3, this.webglRenderingContext.FLOAT, false, 0, 0
+      2, this.webglRenderingContext.FLOAT, false, 0, 0
     );
 
     // Model Texture Coordinates

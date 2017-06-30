@@ -4,6 +4,8 @@ interface Ren2Buffer
 
   getIndexCount(): number;
 
+  getLayer(): number;
+
   getLocation(): Float32Array;
 
   getPositionBuffer(): WebGLBuffer;
@@ -14,6 +16,10 @@ interface Ren2Buffer
 
   setIndices(
     indices : Uint16Array
+  ): void;
+
+  setLayer(
+    layer: number
   ): void;
 
   setLocation(

@@ -54,6 +54,11 @@ class StandardRen2Model implements Ren2Model
     return this.indices;
   }
 
+  getLayer(): number
+  {
+    return this.layer;
+  }
+
   getLocationX(): number
   {
     return this.locationX;
@@ -77,14 +82,10 @@ class StandardRen2Model implements Ren2Model
       positions.push(
         vertex1.getPositionX(),
         vertex1.getPositionY(),
-        // TODO This will need to be divided by the number of layers.
-        -this.layer,
         vertex2.getPositionX(),
         vertex2.getPositionY(),
-        -this.layer,
         vertex3.getPositionX(),
         vertex3.getPositionY(),
-        -this.layer
       )
     });
 

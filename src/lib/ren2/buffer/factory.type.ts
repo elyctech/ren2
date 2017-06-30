@@ -5,6 +5,7 @@ interface Ren2BufferFactory
   construct(
     indexBuffer             : WebGLBuffer,
     indexCount              : number,
+    layer                   : number,
     location                : Float32Array,
     positionBuffer          : WebGLBuffer,
     texture                 : WebGLTexture,

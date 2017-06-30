@@ -5,6 +5,7 @@ class StandardRen2Buffer implements Ren2Buffer
   constructor(
     private indexBuffer             : WebGLBuffer,
     private indexCount              : number,
+    private layer                   : number,
     private location                : Float32Array,
     private positionBuffer          : WebGLBuffer,
     private texture                 : WebGLTexture,
@@ -51,6 +52,11 @@ class StandardRen2Buffer implements Ren2Buffer
     return this.indexCount;
   }
 
+  getLayer(): number
+  {
+    return this.layer;
+  }
+
   getLocation(): Float32Array
   {
     return this.location;
@@ -92,6 +98,13 @@ class StandardRen2Buffer implements Ren2Buffer
     );
 
     this.indexCount = indices.length;
+  }
+
+  setLayer(
+    layer: number
+  ): void
+  {
+     this.layer = layer;
   }
 
   setLocation(
