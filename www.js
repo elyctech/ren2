@@ -335,11 +335,12 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var StandardRen2Buffer = function () {
-    function StandardRen2Buffer(indexBuffer, indexCount, location, positionBuffer, texture, textureCoordinateBuffer, webglRenderingContext) {
+    function StandardRen2Buffer(indexBuffer, indexCount, layer, location, positionBuffer, texture, textureCoordinateBuffer, webglRenderingContext) {
         _classCallCheck(this, StandardRen2Buffer);
 
         this.indexBuffer = indexBuffer;
         this.indexCount = indexCount;
+        this.layer = layer;
         this.location = location;
         this.positionBuffer = positionBuffer;
         this.texture = texture;
@@ -362,6 +363,11 @@ var StandardRen2Buffer = function () {
         key: "getIndexCount",
         value: function getIndexCount() {
             return this.indexCount;
+        }
+    }, {
+        key: "getLayer",
+        value: function getLayer() {
+            return this.layer;
         }
     }, {
         key: "getLocation",
@@ -390,6 +396,11 @@ var StandardRen2Buffer = function () {
             this.webglRenderingContext.bufferData(this.webglRenderingContext.ELEMENT_ARRAY_BUFFER, indices, this.webglRenderingContext.STATIC_DRAW);
             this.webglRenderingContext.bindBuffer(this.webglRenderingContext.ELEMENT_ARRAY_BUFFER, null);
             this.indexCount = indices.length;
+        }
+    }, {
+        key: "setLayer",
+        value: function setLayer(layer) {
+            this.layer = layer;
         }
     }, {
         key: "setLocation",
@@ -448,8 +459,8 @@ var StandardRen2BufferFactory = function () {
 
     _createClass(StandardRen2BufferFactory, [{
         key: "construct",
-        value: function construct(indexBuffer, indexCount, location, positionBuffer, texture, textureCoordinateBuffer, webglRenderingContext) {
-            return new _buffer2.default(indexBuffer, indexCount, location, positionBuffer, texture, textureCoordinateBuffer, webglRenderingContext);
+        value: function construct(indexBuffer, indexCount, layer, location, positionBuffer, texture, textureCoordinateBuffer, webglRenderingContext) {
+            return new _buffer2.default(indexBuffer, indexCount, layer, location, positionBuffer, texture, textureCoordinateBuffer, webglRenderingContext);
         }
     }]);
 
@@ -660,6 +671,11 @@ var StandardRen2Model = function () {
             return this.indices;
         }
     }, {
+        key: "getLayer",
+        value: function getLayer() {
+            return this.layer;
+        }
+    }, {
         key: "getLocationX",
         value: function getLocationX() {
             return this.locationX;
@@ -672,16 +688,12 @@ var StandardRen2Model = function () {
     }, {
         key: "getPositions",
         value: function getPositions() {
-            var _this = this;
-
             var positions = new Array();
             this.triangleCollection.eachTriangle(function (triangle) {
                 var vertex1 = triangle.getVertex1(),
                     vertex2 = triangle.getVertex2(),
                     vertex3 = triangle.getVertex3();
-                positions.push(vertex1.getPositionX(), vertex1.getPositionY(),
-                // TODO This will need to be divided by the number of layers.
-                -_this.layer, vertex2.getPositionX(), vertex2.getPositionY(), -_this.layer, vertex3.getPositionX(), vertex3.getPositionY(), -_this.layer);
+                positions.push(vertex1.getPositionX(), vertex1.getPositionY(), vertex2.getPositionX(), vertex2.getPositionY(), vertex3.getPositionX(), vertex3.getPositionY());
             });
             return Float32Array.from(positions);
         }
@@ -861,20 +873,28 @@ var StandardRen2ModelRepository = function () {
         key: "saveToBuffer",
         value: function saveToBuffer(model) {
             var buffer = void 0;
+            // TODO This should be divided up into a create and save method. The create would initialize a buffer with all of
+            //      the necessary data while this would simply save the data to an existing buffer.
             if (this.modelBufferMap.contains(model)) {
                 buffer = this.modelBufferMap.get(model);
             } else {
                 // TODO Consider also having this in a create method for a performance boost. Then, consider if this should save
                 //      any model not created from this instance. If not, this would throw an error instead of creating a new
                 //      buffer.
-                buffer = this.bufferFactory.construct(this.webglRenderingContext.createBuffer(), 0, Float32Array.from([0, 0]), this.webglRenderingContext.createBuffer(), this.webglRenderingContext.createTexture(), this.webglRenderingContext.createBuffer(), this.webglRenderingContext);
+                buffer = this.bufferFactory.construct(this.webglRenderingContext.createBuffer(), 0, 1, Float32Array.from([0, 0]), this.webglRenderingContext.createBuffer(),
+                // TODO Do not create redundant textures. A texture repository would help with this
+                this.webglRenderingContext.createTexture(), this.webglRenderingContext.createBuffer(), this.webglRenderingContext);
                 this.modelBufferMap.set(model, buffer);
             }
             // TODO Find a way to efficiently determine if rebuffering is necessary. Best I can think of is an event system.
             //      Maybe this will not be a performance issue?
             buffer.setIndices(model.getIndices().asArray());
+            buffer.setLayer(
+            // WebGL has negative values closer than positive values
+            -model.getLayer());
             buffer.setLocation(model.getLocationX(), model.getLocationY());
             buffer.setPositions(model.getPositions());
+            // TODO To avoid redundant textures, this API will need to change
             buffer.setTextureImage(model.getTextureImage());
             buffer.setTextureCoordinates(model.getTextureCoordinates());
             return buffer;
@@ -1048,6 +1068,7 @@ var StandardRen2Renderer = function () {
         this.webglRenderingContext.clear(this.webglRenderingContext.COLOR_BUFFER_BIT | this.webglRenderingContext.DEPTH_BUFFER_BIT);
         // Get program locations
         this.webglRenderingContext.useProgram(this.webglProgram);
+        this.layerUniformLocation = this.webglRenderingContext.getUniformLocation(this.webglProgram, "uLayer");
         this.locationUniformLocation = this.webglRenderingContext.getUniformLocation(this.webglProgram, "uLocation");
         this.positionAttributeLocation = this.webglRenderingContext.getAttribLocation(this.webglProgram, "aPosition");
         this.webglRenderingContext.enableVertexAttribArray(this.positionAttributeLocation);
@@ -1061,13 +1082,15 @@ var StandardRen2Renderer = function () {
         key: "draw",
         value: function draw(buffer) {
             this.webglRenderingContext.useProgram(this.webglProgram);
+            // Model z-placement
+            this.webglRenderingContext.uniform1i(this.layerUniformLocation, buffer.getLayer());
             // Model placement on the viewport
             this.webglRenderingContext.uniform2fv(this.locationUniformLocation,
-            // Should be of length two
+            // TODO Should be of length two
             buffer.getLocation());
             // Model vertex positions
             this.webglRenderingContext.bindBuffer(this.webglRenderingContext.ARRAY_BUFFER, buffer.getPositionBuffer());
-            this.webglRenderingContext.vertexAttribPointer(this.positionAttributeLocation, 3, this.webglRenderingContext.FLOAT, false, 0, 0);
+            this.webglRenderingContext.vertexAttribPointer(this.positionAttributeLocation, 2, this.webglRenderingContext.FLOAT, false, 0, 0);
             // Model Texture Coordinates
             this.webglRenderingContext.bindBuffer(this.webglRenderingContext.ARRAY_BUFFER, buffer.getTextureCoordinateBuffer());
             this.webglRenderingContext.vertexAttribPointer(this.textureCoordinateAttributeLocation, 2, this.webglRenderingContext.FLOAT, false, 0, 0);
@@ -1697,9 +1720,10 @@ var StandardRen2WebGLShaderFactory = function () {
             webglRenderingContext.shaderSource(shader, shaderSource);
             webglRenderingContext.compileShader(shader);
             if (!webglRenderingContext.getShaderParameter(shader, webglRenderingContext.COMPILE_STATUS)) {
-                var log = webglRenderingContext.getShaderInfoLog(shader);
+                var log = webglRenderingContext.getShaderInfoLog(shader),
+                    shaderName = shaderType == webglRenderingContext.FRAGMENT_SHADER ? "fragment shader" : "vertex shader";
                 webglRenderingContext.deleteShader(shader);
-                throw "An error occurred compiling the " + shaderType + " shader: " + log;
+                throw "An error occurred compiling the " + shaderName + " shader: " + log;
             }
             return shader;
         }
@@ -1723,6 +1747,6 @@ exports.default = fragmentShaderSource;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var vertexShaderSource = "\n  attribute vec3 aPosition;\n  attribute vec2 aTextureCoordinate;\n\n  uniform vec2 uLocation;\n\n  varying highp vec2 vTextureCoordinate;\n\n  void main(void)\n  {\n    gl_Position = vec4(aPosition + vec3(uLocation, 0.0), 1.0);\n    vTextureCoordinate = aTextureCoordinate;\n  }\n";
+var vertexShaderSource = "\n  attribute vec2 aPosition;\n  attribute vec2 aTextureCoordinate;\n\n  // uint is not supported in WebGL (GLSL 100) - it is in WebGL 2 (GLSL 300)\n  uniform  int uLayer;\n  uniform vec2 uLocation;\n\n  varying highp vec2 vTextureCoordinate;\n\n  void main(void)\n  {\n    gl_Position = vec4(aPosition + uLocation, uLayer, 1.0);\n    vTextureCoordinate = aTextureCoordinate;\n  }\n";
 exports.default = vertexShaderSource;
 },{}]},{},[18]);
