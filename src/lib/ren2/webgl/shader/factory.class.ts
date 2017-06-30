@@ -16,9 +16,12 @@ class StandardRen2WebGLShaderFactory implements Ren2WebGLShaderFactory
 
     if (!webglRenderingContext.getShaderParameter(shader, webglRenderingContext.COMPILE_STATUS))
     {
-      const log = webglRenderingContext.getShaderInfoLog(shader);
+      const log         = webglRenderingContext.getShaderInfoLog(shader),
+            shaderName  = shaderType == webglRenderingContext.FRAGMENT_SHADER ? "fragment shader" : "vertex shader";
+
       webglRenderingContext.deleteShader(shader);
-      throw `An error occurred compiling the ${shaderType} shader: ${log}`;
+
+      throw `An error occurred compiling the ${shaderName} shader: ${log}`;
     }
 
     return shader;
