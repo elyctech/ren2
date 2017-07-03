@@ -107,10 +107,9 @@ class StandardRen2Service implements Ren2Service
       this.canvasContexts.set(canvas, context);
     }
 
-    stage.eachModel((model  : Ren2Model) =>
-    {
-      context.draw(model);
-    });
+    context.draw(
+      stage
+    );
   }
 }
 

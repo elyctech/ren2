@@ -2,6 +2,7 @@ import Ren2Context          from "lib/ren2/context.type";
 import Ren2Model            from "lib/ren2/model.type";
 import Ren2ModelRepository  from "lib/ren2/model/repository.type";
 import Ren2Renderer         from "lib/ren2/renderer.type";
+import Ren2Stage            from "lib/ren2/stage.type";
 
 class StandardRen2Context implements Ren2Context
 {
@@ -22,16 +23,28 @@ class StandardRen2Context implements Ren2Context
   }
 
   draw(
-    model : Ren2Model
+    stage : Ren2Stage
   ): void
   {
-    const buffer  = this.modelRepository.saveToBuffer(
-            model
-          );
+    stage.eachModel((model) =>
+    {
+      this.modelRepository.saveToBuffer(
+        model
+      );
+    });
 
-    this.renderer.draw(
-      buffer
-    );
+    stage.eachModel((model) =>
+    {
+      const buffer = this.modelRepository.getBuffer(
+        model
+      );
+
+      console.log(`Rendering layer ${buffer.getLayer()}`);
+
+      this.renderer.draw(
+        buffer
+      );
+    });
   }
 }
 

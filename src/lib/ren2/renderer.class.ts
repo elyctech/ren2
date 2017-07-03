@@ -92,7 +92,7 @@ class StandardRen2Renderer implements Ren2Renderer
 
     // Model z-placement
 
-    this.webglRenderingContext.uniform1i(
+    this.webglRenderingContext.uniform1f(
       this.layerUniformLocation,
       buffer.getLayer()
     );

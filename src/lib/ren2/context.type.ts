@@ -1,11 +1,11 @@
-import Ren2Model  from "lib/ren2/model.type";
+import Ren2Stage  from "lib/ren2/stage.type";
 
 interface Ren2Context
 {
   clearCanvas(): void;
 
   draw(
-    model : Ren2Model
+    stage : Ren2Stage
   ): void;
 }
 

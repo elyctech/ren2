@@ -7,12 +7,39 @@ import Ren2Model            from "lib/ren2/model.type";
 // TODO Consider renaming this? Ren2ModelRepository? Similar to how UserRepository saves users to the database.
 class StandardRen2ModelRepository implements Ren2ModelRepository
 {
+  private highestLayer: number;
+
   constructor(
     private bufferFactory         : Ren2BufferFactory,
     private modelBufferMap        : Ren2ModelBufferMap,
     private webglRenderingContext : WebGLRenderingContext
   ) {
+    this.highestLayer = 0;
+  }
 
+  containsBuffer(
+    model : Ren2Model
+  ): boolean
+  {
+    return this.modelBufferMap.contains(model);
+  }
+
+  getBuffer(
+    model : Ren2Model
+  ): Ren2Buffer
+  {
+    let buffer;
+
+    if (this.modelBufferMap.contains(model))
+    {
+      buffer = this.modelBufferMap.get(model);
+    }
+    else
+    {
+      throw "No buffer for model";
+    }
+
+    return buffer;
   }
 
   saveToBuffer(
@@ -54,10 +81,30 @@ class StandardRen2ModelRepository implements Ren2ModelRepository
       model.getIndices().asArray()
     );
 
+    // Keep track of highest layer
+    const layer = model.getLayer();
+
+    if (layer > this.highestLayer)
+    {
+      this.highestLayer = layer;
+
+      this.modelBufferMap.each((model, buffer) =>
+      {
+        buffer.setLayer(
+          -1.9 * model.getLayer() / this.highestLayer + 0.95
+        );
+      });
+    }
+
     buffer.setLayer(
       // WebGL has negative values closer than positive values
-      -model.getLayer()
+      // TODO Highest-layer algorithm prone to pushing Z values to the extremes if there is an exetreme difference
+      //      between layer values. Is this a problem?
+      -1.9 * layer / this.highestLayer + 0.95
     );
+    // buffer.setLayer(
+    //   -layer
+    // );
 
     buffer.setLocation(
       model.getLocationX(),
