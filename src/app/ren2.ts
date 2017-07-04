@@ -1,5 +1,6 @@
 import canvasContextMapFactory    from "app/ren2/canvas_context_map/factory";
 import contextFactory             from "app/ren2/context/factory";
+import imageRepositoryFactory     from "app/ren2/image_repository/factory";
 import modelCollectionFactory     from "app/ren2/model/collection/factory";
 import modelFactory               from "app/ren2/model/factory";
 import ren2ServiceFactory         from "app/ren2/service/factory";
@@ -12,6 +13,7 @@ import vertexFactory              from "app/ren2/vertex/factory";
 const ren2Service = ren2ServiceFactory.construct(
         canvasContextMapFactory.construct(),
         contextFactory,
+        imageRepositoryFactory.construct(),
         modelCollectionFactory,
         modelFactory,
         stageFactory,

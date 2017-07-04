@@ -1,5 +1,6 @@
 import Ren2CanvasContextMap           from "lib/ren2/canvas_context_map.type";
 import Ren2ContextFactory             from "lib/ren2/context/factory.type";
+import Ren2ImageRepository            from "lib/ren2/image_repository.type";
 import Ren2ModelCollectionFactory     from "lib/ren2/model/collection/factory.type";
 import Ren2ModelFactory               from "lib/ren2/model/factory.type";
 import Ren2StageFactory               from "lib/ren2/stage/factory.type";
@@ -16,6 +17,7 @@ class StandardRen2ServiceFactory implements Ren2ServiceFactory
   construct(
     canvasContexts            : Ren2CanvasContextMap,
     contextFactory            : Ren2ContextFactory,
+    imageRepository           : Ren2ImageRepository,
     modelCollectionFactory    : Ren2ModelCollectionFactory,
     modelFactory              : Ren2ModelFactory,
     stageFactory              : Ren2StageFactory,
@@ -28,6 +30,7 @@ class StandardRen2ServiceFactory implements Ren2ServiceFactory
     return new StandardRen2Service(
       canvasContexts,
       contextFactory,
+      imageRepository,
       modelCollectionFactory,
       modelFactory,
       stageFactory,

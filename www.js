@@ -13,43 +13,47 @@ var _factory3 = require("app/ren2/context/factory");
 
 var _factory4 = _interopRequireDefault(_factory3);
 
-var _factory5 = require("app/ren2/model/collection/factory");
+var _factory5 = require("app/ren2/image_repository/factory");
 
 var _factory6 = _interopRequireDefault(_factory5);
 
-var _factory7 = require("app/ren2/model/factory");
+var _factory7 = require("app/ren2/model/collection/factory");
 
 var _factory8 = _interopRequireDefault(_factory7);
 
-var _factory9 = require("app/ren2/service/factory");
+var _factory9 = require("app/ren2/model/factory");
 
 var _factory10 = _interopRequireDefault(_factory9);
 
-var _factory11 = require("app/ren2/stage/factory");
+var _factory11 = require("app/ren2/service/factory");
 
 var _factory12 = _interopRequireDefault(_factory11);
 
-var _factory13 = require("app/ren2/triangle/collection/factory");
+var _factory13 = require("app/ren2/stage/factory");
 
 var _factory14 = _interopRequireDefault(_factory13);
 
-var _factory15 = require("app/ren2/triangle/factory");
+var _factory15 = require("app/ren2/triangle/collection/factory");
 
 var _factory16 = _interopRequireDefault(_factory15);
 
-var _factory17 = require("app/ren2/uint16_collection/factory");
+var _factory17 = require("app/ren2/triangle/factory");
 
 var _factory18 = _interopRequireDefault(_factory17);
 
-var _factory19 = require("app/ren2/vertex/factory");
+var _factory19 = require("app/ren2/uint16_collection/factory");
 
 var _factory20 = _interopRequireDefault(_factory19);
 
+var _factory21 = require("app/ren2/vertex/factory");
+
+var _factory22 = _interopRequireDefault(_factory21);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var ren2Service = _factory10.default.construct(_factory2.default.construct(), _factory4.default, _factory6.default, _factory8.default, _factory12.default, _factory14.default, _factory16.default, _factory18.default, _factory20.default);
+var ren2Service = _factory12.default.construct(_factory2.default.construct(), _factory4.default, _factory6.default.construct(), _factory8.default, _factory10.default, _factory14.default, _factory16.default, _factory18.default, _factory20.default, _factory22.default);
 exports.default = ren2Service;
-},{"app/ren2/canvas_context_map/factory":3,"app/ren2/context/factory":4,"app/ren2/model/collection/factory":5,"app/ren2/model/factory":6,"app/ren2/service/factory":10,"app/ren2/stage/factory":11,"app/ren2/triangle/collection/factory":12,"app/ren2/triangle/factory":13,"app/ren2/uint16_collection/factory":14,"app/ren2/vertex/factory":15}],2:[function(require,module,exports){
+},{"app/ren2/canvas_context_map/factory":3,"app/ren2/context/factory":4,"app/ren2/image_repository/factory":5,"app/ren2/model/collection/factory":6,"app/ren2/model/factory":7,"app/ren2/service/factory":11,"app/ren2/stage/factory":12,"app/ren2/triangle/collection/factory":13,"app/ren2/triangle/factory":14,"app/ren2/uint16_collection/factory":15,"app/ren2/vertex/factory":16}],2:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -64,7 +68,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var ren2BufferFactory = new _factory2.default();
 exports.default = ren2BufferFactory;
-},{"lib/ren2/buffer/factory.class":20}],3:[function(require,module,exports){
+},{"lib/ren2/buffer/factory.class":21}],3:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -79,7 +83,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var ren2CanvasContextMapFactory = new _factory2.default();
 exports.default = ren2CanvasContextMapFactory;
-},{"lib/ren2/canvas_context_map/factory.class":22}],4:[function(require,module,exports){
+},{"lib/ren2/canvas_context_map/factory.class":23}],4:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -114,7 +118,22 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var ren2ContextFactory = new _factory2.default(_factory4.default, _factory6.default, _factory8.default, _factory10.default, _factory12.default);
 exports.default = ren2ContextFactory;
-},{"app/ren2/buffer/factory":2,"app/ren2/model/repository/factory":7,"app/ren2/model_buffer_map/factory":8,"app/ren2/renderer/factory":9,"app/ren2/webgl/program/factory":16,"lib/ren2/context/factory.class":24}],5:[function(require,module,exports){
+},{"app/ren2/buffer/factory":2,"app/ren2/model/repository/factory":8,"app/ren2/model_buffer_map/factory":9,"app/ren2/renderer/factory":10,"app/ren2/webgl/program/factory":17,"lib/ren2/context/factory.class":25}],5:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _factory = require("lib/ren2/image_repository/factory.class");
+
+var _factory2 = _interopRequireDefault(_factory);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var imageRepositoryFactory = new _factory2.default();
+exports.default = imageRepositoryFactory;
+},{"lib/ren2/image_repository/factory.class":27}],6:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -129,7 +148,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var ren2ModelCollectionFactory = new _factory2.default();
 exports.default = ren2ModelCollectionFactory;
-},{"lib/ren2/model/collection/factory.class":27}],6:[function(require,module,exports){
+},{"lib/ren2/model/collection/factory.class":30}],7:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -144,7 +163,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var ren2ModelFactory = new _factory2.default();
 exports.default = ren2ModelFactory;
-},{"lib/ren2/model/factory.class":28}],7:[function(require,module,exports){
+},{"lib/ren2/model/factory.class":31}],8:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -159,7 +178,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var ren2CanvasModelRepositoryFactory = new _factory2.default();
 exports.default = ren2CanvasModelRepositoryFactory;
-},{"lib/ren2/model/repository/factory.class":30}],8:[function(require,module,exports){
+},{"lib/ren2/model/repository/factory.class":33}],9:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -174,7 +193,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var ren2ModelBufferMapFactory = new _factory2.default();
 exports.default = ren2ModelBufferMapFactory;
-},{"lib/ren2/model_buffer_map/factory.class":32}],9:[function(require,module,exports){
+},{"lib/ren2/model_buffer_map/factory.class":35}],10:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -189,7 +208,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var ren2RendererFactory = new _factory2.default();
 exports.default = ren2RendererFactory;
-},{"lib/ren2/renderer/factory.class":34}],10:[function(require,module,exports){
+},{"lib/ren2/renderer/factory.class":37}],11:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -204,7 +223,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var ren2ServiceFactory = new _factory2.default();
 exports.default = ren2ServiceFactory;
-},{"lib/ren2/service/factory.class":36}],11:[function(require,module,exports){
+},{"lib/ren2/service/factory.class":39}],12:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -219,7 +238,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var ren2StageFactory = new _factory2.default();
 exports.default = ren2StageFactory;
-},{"lib/ren2/stage/factory.class":38}],12:[function(require,module,exports){
+},{"lib/ren2/stage/factory.class":41}],13:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -234,7 +253,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var ren2TriangleCollectionFactory = new _factory2.default();
 exports.default = ren2TriangleCollectionFactory;
-},{"lib/ren2/triangle/collection/factory.class":41}],13:[function(require,module,exports){
+},{"lib/ren2/triangle/collection/factory.class":44}],14:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -249,7 +268,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var ren2TriangleFactory = new _factory2.default();
 exports.default = ren2TriangleFactory;
-},{"lib/ren2/triangle/factory.class":42}],14:[function(require,module,exports){
+},{"lib/ren2/triangle/factory.class":45}],15:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -264,7 +283,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var ren2Uint16CollectionFactory = new _factory2.default();
 exports.default = ren2Uint16CollectionFactory;
-},{"lib/ren2/uint16_collection/factory.class":44}],15:[function(require,module,exports){
+},{"lib/ren2/uint16_collection/factory.class":47}],16:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -279,7 +298,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var ren2VertexFactory = new _factory2.default();
 exports.default = ren2VertexFactory;
-},{"lib/ren2/vertex/factory.class":46}],16:[function(require,module,exports){
+},{"lib/ren2/vertex/factory.class":49}],17:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -298,7 +317,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var ren2WebglProgramFactory = new _factory2.default(_factory4.default);
 exports.default = ren2WebglProgramFactory;
-},{"app/ren2/webgl/shader/factory":17,"lib/ren2/webgl/program/factory.class":47}],17:[function(require,module,exports){
+},{"app/ren2/webgl/shader/factory":18,"lib/ren2/webgl/program/factory.class":50}],18:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -313,7 +332,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var ren2WebglShaderFactory = new _factory2.default();
 exports.default = ren2WebglShaderFactory;
-},{"lib/ren2/webgl/shader/factory.class":48}],18:[function(require,module,exports){
+},{"lib/ren2/webgl/shader/factory.class":51}],19:[function(require,module,exports){
 "use strict";
 
 var _ren = require("app/ren2");
@@ -323,7 +342,7 @@ var _ren2 = _interopRequireDefault(_ren);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 window.ren2 = _ren2.default;
-},{"app/ren2":1}],19:[function(require,module,exports){
+},{"app/ren2":1}],20:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -435,7 +454,7 @@ var StandardRen2Buffer = function () {
 }();
 
 exports.default = StandardRen2Buffer;
-},{}],20:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -468,7 +487,7 @@ var StandardRen2BufferFactory = function () {
 }();
 
 exports.default = StandardRen2BufferFactory;
-},{"lib/ren2/buffer.class":19}],21:[function(require,module,exports){
+},{"lib/ren2/buffer.class":20}],22:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -507,7 +526,7 @@ var StandardRen2CanvasContextMap = function () {
 }();
 
 exports.default = StandardRen2CanvasContextMap;
-},{}],22:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -540,7 +559,7 @@ var StandardRen2CanvasContextMapFactory = function () {
 }();
 
 exports.default = StandardRen2CanvasContextMapFactory;
-},{"lib/ren2/canvas_context_map.class":21}],23:[function(require,module,exports){
+},{"lib/ren2/canvas_context_map.class":22}],24:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -567,9 +586,17 @@ var StandardRen2Context = function () {
         }
     }, {
         key: "draw",
-        value: function draw(model) {
-            var buffer = this.modelRepository.saveToBuffer(model);
-            this.renderer.draw(buffer);
+        value: function draw(stage) {
+            var _this = this;
+
+            stage.eachModel(function (model) {
+                _this.modelRepository.saveToBuffer(model);
+            });
+            stage.eachModel(function (model) {
+                var buffer = _this.modelRepository.getBuffer(model);
+                console.log("Rendering layer " + buffer.getLayer());
+                _this.renderer.draw(buffer);
+            });
         }
     }]);
 
@@ -577,7 +604,7 @@ var StandardRen2Context = function () {
 }();
 
 exports.default = StandardRen2Context;
-},{}],24:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -630,7 +657,79 @@ var StandardRen2ContextFactory = function () {
 }();
 
 exports.default = StandardRen2ContextFactory;
-},{"lib/ren2/context.class":23,"lib/ren2/webgl/shader/source/fragment":49,"lib/ren2/webgl/shader/source/vertex":50}],25:[function(require,module,exports){
+},{"lib/ren2/context.class":24,"lib/ren2/webgl/shader/source/fragment":52,"lib/ren2/webgl/shader/source/vertex":53}],26:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var StandardImageRepository = function () {
+    function StandardImageRepository() {
+        _classCallCheck(this, StandardImageRepository);
+
+        this.imageMap = new Map();
+    }
+
+    _createClass(StandardImageRepository, [{
+        key: "containsPath",
+        value: function containsPath(path) {
+            return this.imageMap.has(path);
+        }
+    }, {
+        key: "getImage",
+        value: function getImage(path) {
+            return this.imageMap.get(path);
+        }
+    }, {
+        key: "storeImage",
+        value: function storeImage(path, image) {
+            this.imageMap.set(path, image);
+        }
+    }]);
+
+    return StandardImageRepository;
+}();
+
+exports.default = StandardImageRepository;
+},{}],27:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _image_repository = require("lib/ren2/image_repository.class");
+
+var _image_repository2 = _interopRequireDefault(_image_repository);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var StandardImageRepositoryFactory = function () {
+    function StandardImageRepositoryFactory() {
+        _classCallCheck(this, StandardImageRepositoryFactory);
+    }
+
+    _createClass(StandardImageRepositoryFactory, [{
+        key: "construct",
+        value: function construct() {
+            return new _image_repository2.default();
+        }
+    }]);
+
+    return StandardImageRepositoryFactory;
+}();
+
+exports.default = StandardImageRepositoryFactory;
+},{"lib/ren2/image_repository.class":26}],28:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -725,7 +824,7 @@ var StandardRen2Model = function () {
 }();
 
 exports.default = StandardRen2Model;
-},{}],26:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -782,7 +881,7 @@ var StandardRen2ModelCollection = function () {
 }();
 
 exports.default = StandardRen2ModelCollection;
-},{}],27:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -815,7 +914,7 @@ var StandardRen2ModelColletionFactory = function () {
 }();
 
 exports.default = StandardRen2ModelColletionFactory;
-},{"lib/ren2/model/collection.class":26}],28:[function(require,module,exports){
+},{"lib/ren2/model/collection.class":29}],31:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -848,7 +947,7 @@ var StandardRen2ModelFactory = function () {
 }();
 
 exports.default = StandardRen2ModelFactory;
-},{"lib/ren2/model.class":25}],29:[function(require,module,exports){
+},{"lib/ren2/model.class":28}],32:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -867,11 +966,30 @@ var StandardRen2ModelRepository = function () {
         this.bufferFactory = bufferFactory;
         this.modelBufferMap = modelBufferMap;
         this.webglRenderingContext = webglRenderingContext;
+        this.highestLayer = 0;
     }
 
     _createClass(StandardRen2ModelRepository, [{
+        key: "containsBuffer",
+        value: function containsBuffer(model) {
+            return this.modelBufferMap.contains(model);
+        }
+    }, {
+        key: "getBuffer",
+        value: function getBuffer(model) {
+            var buffer = void 0;
+            if (this.modelBufferMap.contains(model)) {
+                buffer = this.modelBufferMap.get(model);
+            } else {
+                throw "No buffer for model";
+            }
+            return buffer;
+        }
+    }, {
         key: "saveToBuffer",
         value: function saveToBuffer(model) {
+            var _this = this;
+
             var buffer = void 0;
             // TODO This should be divided up into a create and save method. The create would initialize a buffer with all of
             //      the necessary data while this would simply save the data to an existing buffer.
@@ -889,9 +1007,22 @@ var StandardRen2ModelRepository = function () {
             // TODO Find a way to efficiently determine if rebuffering is necessary. Best I can think of is an event system.
             //      Maybe this will not be a performance issue?
             buffer.setIndices(model.getIndices().asArray());
+            // Keep track of highest layer
+            var layer = model.getLayer();
+            if (layer > this.highestLayer) {
+                this.highestLayer = layer;
+                this.modelBufferMap.each(function (model, buffer) {
+                    buffer.setLayer(-1.9 * model.getLayer() / _this.highestLayer + 0.95);
+                });
+            }
             buffer.setLayer(
             // WebGL has negative values closer than positive values
-            -model.getLayer());
+            // TODO Highest-layer algorithm prone to pushing Z values to the extremes if there is an exetreme difference
+            //      between layer values. Is this a problem?
+            -1.9 * layer / this.highestLayer + 0.95);
+            // buffer.setLayer(
+            //   -layer
+            // );
             buffer.setLocation(model.getLocationX(), model.getLocationY());
             buffer.setPositions(model.getPositions());
             // TODO To avoid redundant textures, this API will need to change
@@ -905,7 +1036,7 @@ var StandardRen2ModelRepository = function () {
 }();
 
 exports.default = StandardRen2ModelRepository;
-},{}],30:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -938,7 +1069,7 @@ var StandardRen2CanvasModelRepositoryFactory = function () {
 }();
 
 exports.default = StandardRen2CanvasModelRepositoryFactory;
-},{"lib/ren2/model/repository.class":29}],31:[function(require,module,exports){
+},{"lib/ren2/model/repository.class":32}],34:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1009,7 +1140,7 @@ var StandardRen2ModelBufferMap = function () {
 }();
 
 exports.default = StandardRen2ModelBufferMap;
-},{}],32:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1042,7 +1173,7 @@ var StandardRen2ModelBufferMapFactory = function () {
 }();
 
 exports.default = StandardRen2ModelBufferMapFactory;
-},{"lib/ren2/model_buffer_map.class":31}],33:[function(require,module,exports){
+},{"lib/ren2/model_buffer_map.class":34}],36:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1083,7 +1214,7 @@ var StandardRen2Renderer = function () {
         value: function draw(buffer) {
             this.webglRenderingContext.useProgram(this.webglProgram);
             // Model z-placement
-            this.webglRenderingContext.uniform1i(this.layerUniformLocation, buffer.getLayer());
+            this.webglRenderingContext.uniform1f(this.layerUniformLocation, buffer.getLayer());
             // Model placement on the viewport
             this.webglRenderingContext.uniform2fv(this.locationUniformLocation,
             // TODO Should be of length two
@@ -1109,7 +1240,7 @@ var StandardRen2Renderer = function () {
 }();
 
 exports.default = StandardRen2Renderer;
-},{}],34:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1142,7 +1273,7 @@ var StandardRen2RendererFactory = function () {
 }();
 
 exports.default = StandardRen2RendererFactory;
-},{"lib/ren2/renderer.class":33}],35:[function(require,module,exports){
+},{"lib/ren2/renderer.class":36}],38:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1154,11 +1285,12 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var StandardRen2Service = function () {
-    function StandardRen2Service(canvasContexts, contextFactory, modelCollectionFactory, modelFactory, stageFactory, triangleCollectionFactory, triangleFactory, uint16CollectionFactory, vertexFactory) {
+    function StandardRen2Service(canvasContexts, contextFactory, imageRepository, modelCollectionFactory, modelFactory, stageFactory, triangleCollectionFactory, triangleFactory, uint16CollectionFactory, vertexFactory) {
         _classCallCheck(this, StandardRen2Service);
 
         this.canvasContexts = canvasContexts;
         this.contextFactory = contextFactory;
+        this.imageRepository = imageRepository;
         this.modelCollectionFactory = modelCollectionFactory;
         this.modelFactory = modelFactory;
         this.stageFactory = stageFactory;
@@ -1196,6 +1328,38 @@ var StandardRen2Service = function () {
             return this.vertexFactory.construct(xPosition, yPosition, uTextureCoordinate, vTextureCoordinate);
         }
     }, {
+        key: "loadImage",
+        value: function loadImage(path) {
+            var _this = this;
+
+            var image = void 0;
+            if (this.imageRepository.containsPath(path)) {
+                image = Promise.resolve(this.imageRepository.getImage(path));
+            } else {
+                image = new Promise(function (resolve, reject) {
+                    var image = new Image();
+                    image.onload = function () {
+                        resolve(image);
+                    };
+                    // TODO Error handling on load image
+                    image.src = path;
+                    _this.imageRepository.storeImage(path, image);
+                });
+            }
+            return image;
+        }
+    }, {
+        key: "loadImages",
+        value: function loadImages(paths) {
+            var _this2 = this;
+
+            var imageElements = new Array();
+            paths.forEach(function (path) {
+                imageElements.push(_this2.loadImage(path));
+            });
+            return Promise.all(imageElements);
+        }
+    }, {
         key: "render",
         value: function render(canvas, stage) {
             var context = void 0;
@@ -1205,9 +1369,7 @@ var StandardRen2Service = function () {
                 context = this.contextFactory.construct(canvas);
                 this.canvasContexts.set(canvas, context);
             }
-            stage.eachModel(function (model) {
-                context.draw(model);
-            });
+            context.draw(stage);
         }
     }]);
 
@@ -1215,7 +1377,7 @@ var StandardRen2Service = function () {
 }();
 
 exports.default = StandardRen2Service;
-},{}],36:[function(require,module,exports){
+},{}],39:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1239,8 +1401,8 @@ var StandardRen2ServiceFactory = function () {
 
     _createClass(StandardRen2ServiceFactory, [{
         key: "construct",
-        value: function construct(canvasContexts, contextFactory, modelCollectionFactory, modelFactory, stageFactory, triangleCollectionFactory, triangleFactory, uint16CollectionFactory, vertexFactory) {
-            return new _service2.default(canvasContexts, contextFactory, modelCollectionFactory, modelFactory, stageFactory, triangleCollectionFactory, triangleFactory, uint16CollectionFactory, vertexFactory);
+        value: function construct(canvasContexts, contextFactory, imageRepository, modelCollectionFactory, modelFactory, stageFactory, triangleCollectionFactory, triangleFactory, uint16CollectionFactory, vertexFactory) {
+            return new _service2.default(canvasContexts, contextFactory, imageRepository, modelCollectionFactory, modelFactory, stageFactory, triangleCollectionFactory, triangleFactory, uint16CollectionFactory, vertexFactory);
         }
     }]);
 
@@ -1248,7 +1410,7 @@ var StandardRen2ServiceFactory = function () {
 }();
 
 exports.default = StandardRen2ServiceFactory;
-},{"lib/ren2/service.class":35}],37:[function(require,module,exports){
+},{"lib/ren2/service.class":38}],40:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1283,7 +1445,7 @@ var StandardRen2Stage = function () {
 }();
 
 exports.default = StandardRen2Stage;
-},{}],38:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1316,7 +1478,7 @@ var StandardRen2StageFactory = function () {
 }();
 
 exports.default = StandardRen2StageFactory;
-},{"lib/ren2/stage.class":37}],39:[function(require,module,exports){
+},{"lib/ren2/stage.class":40}],42:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1357,7 +1519,7 @@ var StandardRen2Triangle = function () {
 }();
 
 exports.default = StandardRen2Triangle;
-},{}],40:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1424,7 +1586,7 @@ var StandardRen2TriangleCollection = function () {
 }();
 
 exports.default = StandardRen2TriangleCollection;
-},{}],41:[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1457,7 +1619,7 @@ var StandardRen2TriangleCollectionFactory = function () {
 }();
 
 exports.default = StandardRen2TriangleCollectionFactory;
-},{"lib/ren2/triangle/collection.class":40}],42:[function(require,module,exports){
+},{"lib/ren2/triangle/collection.class":43}],45:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1490,7 +1652,7 @@ var StandardRen2TriangleFactory = function () {
 }();
 
 exports.default = StandardRen2TriangleFactory;
-},{"lib/ren2/triangle.class":39}],43:[function(require,module,exports){
+},{"lib/ren2/triangle.class":42}],46:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1540,7 +1702,7 @@ var StandardRen2Uint16Collection = function () {
 }();
 
 exports.default = StandardRen2Uint16Collection;
-},{}],44:[function(require,module,exports){
+},{}],47:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1573,7 +1735,7 @@ var StandardRen2Uint16CollectionFactory = function () {
 }();
 
 exports.default = StandardRen2Uint16CollectionFactory;
-},{"lib/ren2/uint16_collection.class":43}],45:[function(require,module,exports){
+},{"lib/ren2/uint16_collection.class":46}],48:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1626,7 +1788,7 @@ var StandardRen2Vertex = function () {
 }();
 
 exports.default = StandardRen2Vertex;
-},{}],46:[function(require,module,exports){
+},{}],49:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1659,7 +1821,7 @@ var StandardRen2VertexFactory = function () {
 }();
 
 exports.default = StandardRen2VertexFactory;
-},{"lib/ren2/vertex.class":45}],47:[function(require,module,exports){
+},{"lib/ren2/vertex.class":48}],50:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1697,7 +1859,7 @@ var StandardRen2WebGLProgramFactory = function () {
 }();
 
 exports.default = StandardRen2WebGLProgramFactory;
-},{}],48:[function(require,module,exports){
+},{}],51:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1733,7 +1895,7 @@ var StandardRen2WebGLShaderFactory = function () {
 }();
 
 exports.default = StandardRen2WebGLShaderFactory;
-},{}],49:[function(require,module,exports){
+},{}],52:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1741,12 +1903,12 @@ Object.defineProperty(exports, "__esModule", {
 });
 var fragmentShaderSource = "\n  varying highp vec2 vTextureCoordinate;\n\n  uniform sampler2D uTexture;\n\n  void main(void)\n  {\n    gl_FragColor = texture2D(uTexture, vTextureCoordinate);\n  }\n";
 exports.default = fragmentShaderSource;
-},{}],50:[function(require,module,exports){
+},{}],53:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var vertexShaderSource = "\n  attribute vec2 aPosition;\n  attribute vec2 aTextureCoordinate;\n\n  // uint is not supported in WebGL (GLSL 100) - it is in WebGL 2 (GLSL 300)\n  uniform  int uLayer;\n  uniform vec2 uLocation;\n\n  varying highp vec2 vTextureCoordinate;\n\n  void main(void)\n  {\n    gl_Position = vec4(aPosition + uLocation, uLayer, 1.0);\n    vTextureCoordinate = aTextureCoordinate;\n  }\n";
+var vertexShaderSource = "\n  attribute vec2 aPosition;\n  attribute vec2 aTextureCoordinate;\n\n  // uint is not supported in WebGL (GLSL 100) - it is in WebGL 2 (GLSL 300)\n  uniform float uLayer;\n  uniform  vec2 uLocation;\n\n  varying highp vec2 vTextureCoordinate;\n\n  void main(void)\n  {\n    gl_Position = vec4(aPosition + uLocation, uLayer, 1.0);\n    vTextureCoordinate = aTextureCoordinate;\n  }\n";
 exports.default = vertexShaderSource;
-},{}]},{},[18]);
+},{}]},{},[19]);

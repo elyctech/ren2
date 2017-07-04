@@ -22,6 +22,14 @@ interface Ren2Service
     vTextureCoordinate  : number
   ): Ren2Vertex;
 
+  loadImage(
+    path  : string
+  ): Promise<HTMLImageElement>;
+
+  loadImages(
+    path  : Array<string>
+  ): Promise<Array<HTMLImageElement>>;
+
   render(
     canvas  : HTMLCanvasElement,
     // TODO Redesign "Ren2Stage"
