@@ -8,7 +8,7 @@ interface Ren2Model
     vertex1 : Ren2Vertex,
     vertex2 : Ren2Vertex,
     vertex3 : Ren2Vertex
-  ) : Ren2Triangle;
+  ) : this;
 
   getIndices(): Ren2Uint16Collection;
 

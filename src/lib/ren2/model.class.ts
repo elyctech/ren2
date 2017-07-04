@@ -23,7 +23,7 @@ class StandardRen2Model implements Ren2Model
     vertex1 : Ren2Vertex,
     vertex2 : Ren2Vertex,
     vertex3 : Ren2Vertex
-  ) : Ren2Triangle
+  ) : this
   {
     const indexCount  = this.indices.count(),
           triangle    = this.triangleFactory.construct(
@@ -46,7 +46,7 @@ class StandardRen2Model implements Ren2Model
 
     this.triangleCollection.add(triangle);
 
-    return triangle;
+    return this;
   }
 
   getIndices(): Ren2Uint16Collection
