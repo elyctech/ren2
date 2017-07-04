@@ -14,7 +14,7 @@ class StandardRen2ModelRepository implements Ren2ModelRepository
     private modelBufferMap        : Ren2ModelBufferMap,
     private webglRenderingContext : WebGLRenderingContext
   ) {
-    this.highestLayer = 0;
+    this.highestLayer = 1;
   }
 
   containsBuffer(
