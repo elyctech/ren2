@@ -1,6 +1,6 @@
 {
   "name": "ren2",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "A 2-dimensional rendering engine for the Web built on WebGL",
   "main": "index.js",
   "repository": "https://github.com/elyctech/ren2",
