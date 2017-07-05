@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>ren2 Demo</title>
+  </head>
+  <body>
+    <canvas
+      height  = "400"
+      id      = "my_canvas"
+      style   = "background-color: black;"
+      width   = "800"
+    ></canvas>
+    <script src="ren2.js"></script>
+    <script>
+      ren2.loadImage(
+        "texture.png"
+      ).then((texture) =>
+      {
+        const myCanvas  = document.getElementById("my_canvas"),
+              myModel   = ren2.createModel(
+                            0,    // Layer, must be >= 0
+                            // 0.2,  // X location in WebGL space (-1.0 to 1.0)
+                            // 0.3,  // Y location in WebGL space (-1.0 to 1.0)
+                            0,
+                            0,
+                            texture
+                          ),
+              myStage   = ren2.createStage();
+
+        myStage.addModel(
+          myModel
+        );
+
+        myModel
+          .addTriangle(
+            ren2.createVertex(
+               -0.5,  0.5,  // X and Y position coordinates in WebGL position space (-1.0 to 1.0)
+                0.0,  0.0   // S and T texture coordinates in WebGL texture space (0.0 to 1.0)
+            ),
+            ren2.createVertex(
+                0.5,  0.5,  // X and Y position coordinates in WebGL position space (-1.0 to 1.0)
+                1.0,  0.0   // S and T texture coordinates in WebGL texture space (0.0 to 1.0)
+            ),
+            ren2.createVertex(
+               -0.5, -0.5,  // X and Y position coordinates in WebGL position space (-1.0 to 1.0)
+                0.0,  1.0   // S and T texture coordinates in WebGL texture space (0.0 to 1.0)
+            )
+          )
+          .addTriangle(
+            ren2.createVertex(
+               -0.5, -0.5,  // X and Y position coordinates in WebGL position space (-1.0 to 1.0)
+                0.0,  1.0   // S and T texture coordinates in WebGL texture space (0.0 to 1.0)
+            ),
+            ren2.createVertex(
+                0.5,  0.5,  // X and Y position coordinates in WebGL position space (-1.0 to 1.0)
+                1.0,  0.0   // S and T texture coordinates in WebGL texture space (0.0 to 1.0)
+            ),
+            ren2.createVertex(
+                0.5, -0.5,  // X and Y position coordinates in WebGL position space (-1.0 to 1.0)
+                1.0,  1.0   // S and T texture coordinates in WebGL texture space (0.0 to 1.0)
+            )
+          );
+
+        ren2.render(
+          myCanvas,
+          myStage
+        );
+      });
+    </script>
+  </body>
+</html>

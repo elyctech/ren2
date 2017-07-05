@@ -11,6 +11,7 @@
     "browserify": "^14.3.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
+    "gulp-rename": "^1.2.2",
     "gulp-typescript": "^3.1.6",
     "typescript": "^2.3.2",
     "vinyl-source-stream": "^1.1.0"
