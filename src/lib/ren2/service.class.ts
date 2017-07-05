@@ -112,8 +112,6 @@ class StandardRen2Service implements Ren2Service
           resolve(image);
         };
 
-        // TODO Error handling on load image
-
         image.src = path;
 
         this.imageRepository.storeImage(path, image);

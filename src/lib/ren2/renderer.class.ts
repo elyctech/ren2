@@ -101,7 +101,6 @@ class StandardRen2Renderer implements Ren2Renderer
 
     this.webglRenderingContext.uniform2fv(
       this.locationUniformLocation,
-      // TODO Should be of length two
       buffer.getLocation()
     );
 

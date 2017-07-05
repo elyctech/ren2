@@ -4,7 +4,6 @@ import Ren2ModelRepository  from "lib/ren2/model/repository.type";
 import Ren2ModelBufferMap   from "lib/ren2/model_buffer_map.type";
 import Ren2Model            from "lib/ren2/model.type";
 
-// TODO Consider renaming this? Ren2ModelRepository? Similar to how UserRepository saves users to the database.
 class StandardRen2ModelRepository implements Ren2ModelRepository
 {
   private highestLayer: number;
@@ -48,25 +47,18 @@ class StandardRen2ModelRepository implements Ren2ModelRepository
   {
     let buffer;
 
-    // TODO This should be divided up into a create and save method. The create would initialize a buffer with all of
-    //      the necessary data while this would simply save the data to an existing buffer.
-
     if (this.modelBufferMap.contains(model))
     {
       buffer = this.modelBufferMap.get(model);
     }
     else
     {
-      // TODO Consider also having this in a create method for a performance boost. Then, consider if this should save
-      //      any model not created from this instance. If not, this would throw an error instead of creating a new
-      //      buffer.
       buffer = this.bufferFactory.construct(
         this.webglRenderingContext.createBuffer(),
         0,
         1,
         Float32Array.from([0, 0]),
         this.webglRenderingContext.createBuffer(),
-        // TODO Do not create redundant textures. A texture repository would help with this
         this.webglRenderingContext.createTexture(),
         this.webglRenderingContext.createBuffer(),
         this.webglRenderingContext
@@ -75,8 +67,6 @@ class StandardRen2ModelRepository implements Ren2ModelRepository
       this.modelBufferMap.set(model, buffer);
     }
 
-    // TODO Find a way to efficiently determine if rebuffering is necessary. Best I can think of is an event system.
-    //      Maybe this will not be a performance issue?
     buffer.setIndices(
       model.getIndices().asArray()
     );
@@ -98,13 +88,8 @@ class StandardRen2ModelRepository implements Ren2ModelRepository
 
     buffer.setLayer(
       // WebGL has negative values closer than positive values
-      // TODO Highest-layer algorithm prone to pushing Z values to the extremes if there is an exetreme difference
-      //      between layer values. Is this a problem?
       -1.9 * layer / this.highestLayer + 0.95
     );
-    // buffer.setLayer(
-    //   -layer
-    // );
 
     buffer.setLocation(
       model.getLocationX(),
@@ -115,7 +100,6 @@ class StandardRen2ModelRepository implements Ren2ModelRepository
       model.getPositions()
     );
 
-    // TODO To avoid redundant textures, this API will need to change
     buffer.setTextureImage(
       model.getTextureImage()
     );

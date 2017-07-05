@@ -7,7 +7,6 @@ import Ren2RendererFactory        from "lib/ren2/renderer/factory.type";
 import StandardRen2Context        from "lib/ren2/context.class";
 import WebGLProgramFactory        from "lib/ren2/webgl/program/factory.type";
 
-// TODO Should these be customizable?
 import webglFragmentShaderSource  from "lib/ren2/webgl/shader/source/fragment";
 import webglVertexShaderSource    from "lib/ren2/webgl/shader/source/vertex";
 

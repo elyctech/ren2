@@ -32,7 +32,6 @@ interface Ren2Service
 
   render(
     canvas  : HTMLCanvasElement,
-    // TODO Redesign "Ren2Stage"
     stage   : Ren2Stage
   ): void;
 }

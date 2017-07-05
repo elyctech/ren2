@@ -12,7 +12,6 @@ class StandardRen2Buffer implements Ren2Buffer
     private textureCoordinateBuffer : WebGLBuffer,
     private webglRenderingContext   : WebGLRenderingContext
   ) {
-    // TODO Standard texture properties?
     this.webglRenderingContext.bindTexture(
       this.webglRenderingContext.TEXTURE_2D,
       this.texture
